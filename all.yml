@@ -1,0 +1,8 @@
+# - hosts: zookeeper
+#   tasks:
+#   - import_role:
+#       name: zookeeper
+- hosts: broker
+  tasks:
+  - import_role:
+      name: kafka-broker

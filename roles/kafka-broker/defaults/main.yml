@@ -1,0 +1,44 @@
+zookeeper:
+  config:
+    clientPort: 2181
+broker:
+  config:
+    port: 9092
+kafka:
+  broker:
+    user: kafka
+    group: kafka
+    home: /opt/apps/kafka
+    dist_file: kafka_2.12-2.2.0.tgz
+    dist_dir: /opt/apps/
+    config_file: /opt/apps/kafka/config/server.properties
+    systemd_file: /etc/systemd/system/kafka.service
+    service_name: kafka
+    datadir:
+      - /data1/kafka/data
+      - /data2/kafka/data
+    systemd:
+      enabled: yes
+      state: started
+    environment:
+      JAVA_HOME: /opt/apps/java/default
+      KAFKA_HEAP_OPTS: "-Xmx8g -Xms8g -XX:MetaspaceSize=96m -XX:+UseG1GC -XX:MaxGCPauseMillis=20 -XX:InitiatingHeapOccupancyPercent=35 -XX:G1HeapRegionSize=16M -XX:MinMetaspaceFreeRatio=50 -XX:MaxMetaspaceFreeRatio=80"
+      JMX_PORT: "9999"
+    config:
+      auto.create.topics.enable: false
+      default.replication.factor: 2
+      group.initial.rebalance.delay.ms: 0
+      log.retention.check.interval.ms: 300000
+      log.retention.hours: 12
+      log.segment.bytes: 1073741824
+      num.io.threads: 48
+      num.network.threads: 32
+      num.partitions: 6
+      num.recovery.threads.per.data.dir: 16
+      offsets.topic.replication.factor: 3
+      socket.receive.buffer.bytes: 102400
+      socket.request.max.bytes: 104857600
+      socket.send.buffer.bytes: 102400
+      transaction.state.log.min.isr: 2
+      transaction.state.log.replication.factor: 3
+      zookeeper.connection.timeout.ms: 6000

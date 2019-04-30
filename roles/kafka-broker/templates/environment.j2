@@ -1,0 +1,22 @@
+[Unit]
+Description=Apache Kafka - broker
+Documentation=http://kafka.apache.org/documentation.html
+Requires=network.target
+After=network.target
+
+[Service]
+Type=simple
+User=kafka
+Group=kafka
+{% for key, value in kafka.broker.environment.items() %}
+Environment="{{key}}={{value}}"
+{% endfor %}
+ExecStart=/opt/apps/kafka/bin/kafka-server-start.sh /opt/apps/kafka/config/server.properties
+ExecStop=/opt/apps/kafka/bin/kafka-server-stop.sh
+SuccessExitStatus=143
+TimeoutStopSec=180
+Restart=on-failure
+SyslogIdentifier=kafka
+
+[Install]
+WantedBy=multi-user.target
