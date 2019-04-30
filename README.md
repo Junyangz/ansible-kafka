@@ -12,7 +12,7 @@ Ansible provides a simple way to deploy, manage, and configure the Apache Kafka.
 
 The prerequisite of Apache Kafka services install from this repository is that you need a Zookeeper cluster pre-installed.
 
-## Disclamier
+## Disclaimer
 
 This repository is maintained by [Junyangz](https://github.com/Junyangz) for parctice Ansible playbook previous intend for Kafka cluster installation on `CRS3-NRGL` bare metal server.
 
